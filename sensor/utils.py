@@ -16,6 +16,6 @@ def get_dataframe(database_name:str,collection_name:str):
         logging.info(f"Data Row:{df.shape[0]} and Columns: {df.shape[1]}")
         return df
     except Exception as e :
-        SensorExeception(e, sys)
+        raise SensorExeception(e, sys)
        
         

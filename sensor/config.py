@@ -10,3 +10,4 @@ class EnviromentVariable:
 
 evr_obj = EnviromentVariable()
 mongo_client = pymongo.MongoClient(evr_obj.mongo_db_url)
+TARGET_COLUMN = "class"

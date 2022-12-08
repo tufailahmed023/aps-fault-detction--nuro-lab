@@ -29,9 +29,14 @@ class DataIngestionInput:
         except Exception as e:
             raise SensorExeception(e, error_details = sys)
 
-
+class DataValidationInput:
+    def __init__(self,training_pipline_config:TrainingPiplineconfig):
+        self.data_validation_dir = os.path.join(training_pipline_config.artifact_dir,"data_validation")
+        self.report_file = os.path.join(self.data_validation_dir,"report_file.ymal")
+        self.thersholde = 0.1
+        self.base_dataframe_path = "/config/workspace/aps_failure_training_set1.csv"
+    
 class DataTransformationInput:...
-class DataValidationInput:...
 class ModelTrainingInput:...
 class ModelPusherInput:...
 class ModelEvaluationInput:...

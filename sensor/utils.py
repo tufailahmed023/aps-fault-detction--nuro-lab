@@ -4,6 +4,7 @@ from sensor.exception import SensorExeception
 from sensor.config import mongo_client
 import json
 import os, sys 
+import yaml
 
 def get_dataframe(database_name:str,collection_name:str):
     try:
@@ -19,3 +20,18 @@ def get_dataframe(database_name:str,collection_name:str):
         raise SensorExeception(e, sys)
        
         
+def convert_columns_to_float(df:pd.DataFrame,column_to_exclude:str):
+    for col in df.columns:
+        if col != column_to_exclude:
+            df[col] = df[col].astype("float")
+    return df 
+
+def write_yaml_file(filepath,data):
+    try:
+        file_dir = os.path.dirname(filepath)
+        os.makedirs(file_dir,exist_ok = True )
+        with open(filepath,'w') as writer:
+           yaml.dump(data,writer)
+    except Exception as e:
+        print(SensorExeception(e, error_details =sys))
+
